@@ -3,10 +3,11 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert';
 
-const Register = (props) => {
+const Register = ({setAlert, register}) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -14,7 +15,6 @@ const Register = (props) => {
         password2: ''
     });
 
-    const { setAlert } = props;
     const { name, email, password, password2 } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -25,29 +25,9 @@ const Register = (props) => {
             // Dont submit
             setAlert("Passwords don't match", "danger");
         } else {
-            // It's passing the data
-            const newUser = {
-                name,
-                email,
-                password,
-                password2
-            }
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-    
-                const body = JSON.stringify(newUser);
-    
-                const res = await axios.post('/api/users', body, config);
-    
-                console.log(res.data);
-    
-            } catch (err) {
-                console.error(err.response.data);
-            }
+            register({
+                name, email, password
+            });
         }
     }
 
@@ -58,7 +38,9 @@ const Register = (props) => {
             <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                    <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} required />
+                    <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} 
+                    // required 
+                    />
                 </div>
                 <div className="form-group">
                     <input 
@@ -76,7 +58,7 @@ const Register = (props) => {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    minLength="6"
+                    // minLength="6"
                     value={password} 
                     onChange={e => onChange(e)} 
                 />
@@ -86,7 +68,7 @@ const Register = (props) => {
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
-                    minLength="6"
+                    // minLength="6"
                     value={password2} 
                     onChange={e => onChange(e)}
                 />
@@ -101,7 +83,8 @@ const Register = (props) => {
 }
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
