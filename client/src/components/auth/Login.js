@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import Alert from '../layout/Alert';
+import PropTypes from 'prop-types'
 
 const Login = ({ login }) => {
     const [formData, setFormData] = useState({
@@ -56,6 +57,10 @@ const Login = ({ login }) => {
             </p>
         </Fragment>
     )
+}
+
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
 }
 
 export default connect(null, { login })(Login);
