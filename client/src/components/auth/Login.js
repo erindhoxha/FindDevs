@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import Alert from '../layout/Alert';
 
-const Login = () => {
+const Login = ({ login }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -19,26 +22,12 @@ const Login = () => {
               email,
               password,
           }
-          try {
-              const config = {
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              }
-  
-              const body = JSON.stringify(newUser);
-  
-              const res = await axios.post('/api/users', body, config);
-  
-              console.log(res.data);
-  
-          } catch (err) {
-              console.error(err.response.data);
-          }
+          login(email, password);
     }
 
     return (
         <Fragment>
+            <Alert />
             <h1 className="large text-primary">Sign in</h1>
             <p className="lead"><i className="fas fa-user"></i> Log in to your account</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
@@ -69,4 +58,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default connect(null, { login })(Login);
