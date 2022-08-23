@@ -1,16 +1,26 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import Alert from '../layout/Alert';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-const Login = ({ login }) => {
+
+const Login = ({ login, isAuthenticated }) => {
+    let navigate = useNavigate();
+        
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
+    useEffect(() => {
+        console.log(isAuthenticated);
+        if (isAuthenticated) {
+            return navigate("/", { replace: true })
+        }
+    }, [isAuthenticated, navigate])
 
     const { email, password } = formData;
 
@@ -25,6 +35,9 @@ const Login = ({ login }) => {
           }
           login(email, password);
     }
+
+    // Redirect if logged in
+
 
     return (
         <Fragment>
@@ -61,6 +74,11 @@ const Login = ({ login }) => {
 
 Login.propTypes = {
     login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 }
 
-export default connect(null, { login })(Login);
+const mapStateToProps = (state, prevState) => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { login })(Login);
