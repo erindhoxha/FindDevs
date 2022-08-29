@@ -2,15 +2,19 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { getCurrentProfile } from '../../actions/profile'
 import { connect } from 'react-redux'
+import Spinner from '../layout/Spinner'
 
-function Dashboard( { getCurrentProfile }) {
+function Dashboard( { getCurrentProfile, auth, profile }) {
 
   useEffect(() => {
     getCurrentProfile();
   }, [])
 
   return (
-    <div>Dashboard</div>
+  <div>
+    Dashboard
+    {profile.loading && profile.profile === null ? <Spinner /> : <></>}
+  </div>
   )
 }
 
