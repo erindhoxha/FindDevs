@@ -18,7 +18,7 @@ function Dashboard( { getCurrentProfile, auth, profile: { profile, loading } }) 
         </h1>
         <p className="lead"><i className="fas fa-user"></i> Welcome {auth.user && auth.user.name}</p>
 
-        {profile != null ? <></> : <></>}
+        {profile != null ? <>Has a profile</> : <>Has not</>}
         <div className="dash-buttons">
           <a href="edit-profile.html" className="btn btn-light"><i className="fas fa-user-circle text-primary"></i> Edit Profile</a>
           <a href="add-experience.html" className="btn btn-light"
