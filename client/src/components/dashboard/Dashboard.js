@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { getCurrentProfile } from '../../actions/profile'
 import { connect } from 'react-redux'
 import Spinner from '../layout/Spinner'
+import { Link } from 'react-router-dom';
 
 function Dashboard( { getCurrentProfile, auth, profile: { profile, loading } }) {
 
   useEffect(() => {
     getCurrentProfile();
-  }, [])
+  }, [getCurrentProfile])
 
   return (
     <div>
@@ -18,7 +19,17 @@ function Dashboard( { getCurrentProfile, auth, profile: { profile, loading } }) 
         </h1>
         <p className="lead"><i className="fas fa-user"></i> Welcome {auth.user && auth.user.name}</p>
 
-        {profile != null ? <>Has a profile</> : <>Has not</>}
+        {profile != null && loading == false ? 
+          (
+          <></>
+          ) : 
+          ( 
+            <>
+              You have not set up a profile. Please add some info.
+              <Link to="/create-profile" className="btn btn-primary my-1">Create profile</Link>
+            </>
+          )
+        }
         <div className="dash-buttons">
           <a href="edit-profile.html" className="btn btn-light"><i className="fas fa-user-circle text-primary"></i> Edit Profile</a>
           <a href="add-experience.html" className="btn btn-light"

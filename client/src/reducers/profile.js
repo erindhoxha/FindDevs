@@ -21,6 +21,8 @@ export default function profile(state = initialState, action) {
         case PROFILE_ERROR:
             return {
                 ...state,
+                profile: null,
+                repos: [],
                 error: payload,
                 loading: false
             }
