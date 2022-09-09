@@ -326,6 +326,10 @@ button {
   color: var(--primary-color);
 }
 
+a.active {
+  color: var(--primary-color);
+}
+
 .navbar .welcome span {
   margin-right: 0.6rem;
 }
