@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GET_PROFILE, PROFILE_ERROR, CREATE_PROFILE } from "./types";
+import { setAlert } from "../actions/alert";
 
 // get current users profle
 
@@ -35,10 +36,28 @@ export const createProfile =
 
       const res = await axios.post("api/profile", body, config);
       dispatch({
-        type: CREATE_PROFILE,
+        type: GET_PROFILE,
         payload: res.data,
       });
+
+      dispatch(setAlert(edit ? "Profile updated" : "Profile created"));
+
+      if (!edit) {
+        history.push("/dashboard");
+      }
     } catch (error) {
+      const errors = error.response.data.errors;
+      console.log(error);
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setAlert(error.msg, "danger"));
+        });
+      }
+
+      if (error.response.data.msg) {
+        console.log("There is one");
+        dispatch(setAlert(error.response.data.msg, "danger"));
+      }
       dispatch({
         type: PROFILE_ERROR,
         payload: {

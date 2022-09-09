@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 import { Link } from "react-router-dom";
+import Alert from "../layout/Alert";
 
 const CreateProfile = (props) => {
   const [formData, setFormData] = useState({
@@ -55,6 +56,7 @@ const CreateProfile = (props) => {
 
   return (
     <>
+      <Alert />
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
@@ -232,4 +234,8 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createProfile })(CreateProfile);
+const mapStateToProps = (state, prevState) => ({
+  alerts: state.alerts,
+});
+
+export default connect(mapStateToProps, { createProfile })(CreateProfile);
