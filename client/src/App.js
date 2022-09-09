@@ -38,7 +38,7 @@ const App = () => {
           <section className="container">
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/create" element={<CreateProfile />} />
+              <Route path="/create-profile" element={<CreateProfile />} />
               <Route path="/register" element={<Register />} />
               <Route
                 path="/dashboard"

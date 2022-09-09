@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { createProfile } from "../../actions/profile";
 
 const CreateProfile = (props) => {
   const [formData, setFormData] = useState({
@@ -33,15 +34,20 @@ const CreateProfile = (props) => {
     instagram,
   } = formData;
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    props.createProfile(formData);
+  };
+
   return (
     <>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
-        profile stand out
+        profile stand out for {}
       </p>
       <small>* = required field</small>
-      <form className="form">
+      <form className="form" onSubmit={(e) => submitForm(e)}>
         <div className="form-group">
           <select name="status">
             <option value="0">* Select Professional Status</option>
@@ -138,6 +144,8 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(CreateProfile);
