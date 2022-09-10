@@ -38,7 +38,7 @@ export const loadUser = () => async (dispatch) => {
 
 // action called register a user
 export const register =
-  ({ name, email, password }) =>
+  ({ name, email, password }, navigate) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -53,6 +53,7 @@ export const register =
         payload: res.data,
       });
       dispatch(loadUser());
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       const errors = error.response.data.errors;
       if (errors) {

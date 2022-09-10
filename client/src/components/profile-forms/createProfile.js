@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link, useNavigate, withRouter } from "react-router-dom";
 import { createProfile } from "../../actions/profile";
-import { Link } from "react-router-dom";
 import Alert from "../layout/Alert";
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfile }) => {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -44,10 +46,12 @@ const CreateProfile = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    props.createProfile(formData);
+    createProfile(formData, navigate);
   };
 
   const onChange = (e) => {
+    console.log(e.target.name);
+    console.log([e.target.name]);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,

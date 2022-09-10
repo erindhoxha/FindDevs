@@ -23,7 +23,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 export const createProfile =
-  (formData, history, edit = false) =>
+  (formData, navigate, edit = false) =>
   async (dispatch) => {
     try {
       const config = {
@@ -40,10 +40,12 @@ export const createProfile =
         payload: res.data,
       });
 
-      dispatch(setAlert(edit ? "Profile updated" : "Profile created"));
+      dispatch(
+        setAlert(edit ? "Profile updated" : "Profile created", "success")
+      );
 
       if (!edit) {
-        history.push("/dashboard");
+        navigate("/dashboard", { replace: true });
       }
     } catch (error) {
       const errors = error.response.data.errors;
