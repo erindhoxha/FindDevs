@@ -6,7 +6,9 @@ import { setAlert } from "../actions/alert";
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/profile/me");
+    const res = await axios.get("/api/profile/me", {
+      headers: { "x-auth-token": localStorage.token },
+    });
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
