@@ -50,8 +50,6 @@ const CreateProfile = ({ createProfile }) => {
   };
 
   const onChange = (e) => {
-    console.log(e.target.name);
-    console.log([e.target.name]);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
