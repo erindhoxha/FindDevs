@@ -19,12 +19,11 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import CreateProfile from "./components/profile-forms/CreateProfile";
 import EditProfile from "./components/profile-forms/EditProfile";
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
-
 const App = () => {
   useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     store.dispatch(loadUser());
   }, []);
 

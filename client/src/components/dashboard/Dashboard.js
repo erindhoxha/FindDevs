@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import { Link } from "react-router-dom";
 import DashboardActions from "./DashboardActions";
+import Alert from "../layout/Alert";
 
 function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
   useEffect(() => {
@@ -14,6 +15,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
   return (
     <div>
       {loading && profile === null ? <Spinner /> : <></>}
+      <Alert />
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Welcome {auth.user && auth.user.name}

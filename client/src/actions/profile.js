@@ -46,12 +46,9 @@ export const createProfile =
         setAlert(edit ? "Profile updated" : "Profile created", "success")
       );
 
-      if (!edit) {
-        navigate("/dashboard", { replace: true });
-      }
+      if (!edit) navigate("/dashboard", { replace: true });
     } catch (error) {
       const errors = error.response.data.errors;
-      console.log(error);
       if (errors) {
         errors.forEach((error) => {
           dispatch(setAlert(error.msg, "danger"));
