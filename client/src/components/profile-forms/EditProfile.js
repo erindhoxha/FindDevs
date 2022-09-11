@@ -62,7 +62,7 @@ const EditProfile = ({
       youtube: loading || !profile.youtube ? "" : profile?.youtube,
       instagram: loading || !profile.instagram ? "" : profile?.instagram,
     });
-  }, [getCurrentProfile]);
+  }, [loading]);
 
   const submitForm = (e) => {
     e.preventDefault();
