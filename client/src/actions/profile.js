@@ -68,3 +68,42 @@ export const createProfile =
       });
     }
   };
+
+// Add experience
+
+export const addExperience = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(formData);
+
+    const res = await axios.put("api/profile", body, config);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => {
+        dispatch(setAlert(error.msg, "danger"));
+      });
+    }
+
+    if (error.response.data.msg) {
+      console.log("There is one");
+      dispatch(setAlert(error.response.data.msg, "danger"));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
