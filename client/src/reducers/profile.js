@@ -3,6 +3,7 @@ import {
   CREATE_PROFILE,
   GET_PROFILE,
   PROFILE_ERROR,
+  UPDATE_PROFILE,
 } from "../actions/types";
 
 const initialState = {
@@ -18,11 +19,7 @@ export default function profile(state = initialState, action) {
 
   switch (type) {
     case GET_PROFILE:
-      return {
-        ...state,
-        profile: payload,
-        loading: false,
-      };
+    case UPDATE_PROFILE:
     case CREATE_PROFILE:
       return {
         ...state,

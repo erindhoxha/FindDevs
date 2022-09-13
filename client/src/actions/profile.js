@@ -43,7 +43,7 @@ export const createProfile =
 
       const res = await axios.post("api/profile", body, config);
       dispatch({
-        type: GET_PROFILE,
+        type: CREATE_PROFILE,
         payload: res.data,
       });
 
@@ -76,7 +76,7 @@ export const createProfile =
 
 // Add experience
 
-export const addExperience = (formData, history) => async (dispatch) => {
+export const addExperience = (formData, navigate) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -92,6 +92,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(setAlert("Experience added", "success"));
+    navigate("/dashboard", { replace: true });
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -114,7 +115,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
 
 // Add experience
 
-export const addEducation = (formData, history) => async (dispatch) => {
+export const addEducation = (formData, navigate) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -129,7 +130,8 @@ export const addEducation = (formData, history) => async (dispatch) => {
       type: UPDATE_PROFILE,
       payload: res.data,
     });
-    dispatch(setAlert("Experience added", "success"));
+    dispatch(setAlert("Education added", "success"));
+    navigate("/dashboard", { replace: true });
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
