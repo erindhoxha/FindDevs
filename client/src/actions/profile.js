@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_PROFILE, PROFILE_ERROR, CREATE_PROFILE } from "./types";
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  CREATE_PROFILE,
+  UPDATE_PROFILE,
+} from "./types";
 import { setAlert } from "../actions/alert";
 
 // get current users profle
@@ -81,11 +86,12 @@ export const addExperience = (formData, history) => async (dispatch) => {
 
     const body = JSON.stringify(formData);
 
-    const res = await axios.put("api/profile", body, config);
+    const res = await axios.put("api/profile/experience", body, config);
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data,
     });
+    dispatch(setAlert("Experience added", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -93,9 +99,45 @@ export const addExperience = (formData, history) => async (dispatch) => {
         dispatch(setAlert(error.msg, "danger"));
       });
     }
-
     if (error.response.data.msg) {
-      console.log("There is one");
+      dispatch(setAlert(error.response.data.msg, "danger"));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Add experience
+
+export const addEducation = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(formData);
+
+    const res = await axios.put("api/profile/education", body, config);
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+    dispatch(setAlert("Experience added", "success"));
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => {
+        dispatch(setAlert(error.msg, "danger"));
+      });
+    }
+    if (error.response.data.msg) {
       dispatch(setAlert(error.response.data.msg, "danger"));
     }
     dispatch({
