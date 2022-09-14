@@ -35,7 +35,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
       <DashboardActions />
 
       <h2 className="my-2">Experience Credentials</h2>
-      <table className="table">
+      <table className="table w-full">
         <thead>
           <tr>
             <th>Company</th>
@@ -45,22 +45,21 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{profile && profile.company}</td>
-            <td className="hide-sm">{profile && profile.status}</td>
-            <td className="hide-sm">02-03-2009 - 01-02-2014</td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Traversy Media</td>
-            <td className="hide-sm">Instructor & Developer</td>
-            <td className="hide-sm">02-03-2015 - Now</td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
+          {profile &&
+            profile.experience &&
+            profile.experience.map((exp) => (
+              <tr>
+                <td>{exp.company}</td>
+                <td className="hide-sm">{exp.title}</td>
+                <td className="hide-sm">
+                  {new Date(`${exp.from}`).toLocaleDateString("gb-en")} -{" "}
+                  {exp.current ? "Current" : exp.to}
+                </td>
+                <td>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 

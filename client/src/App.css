@@ -579,3 +579,7 @@ a.active {
     padding: 0.3rem 0.4rem;
   }
 }
+
+.w-full {
+  width:100%;
+}
