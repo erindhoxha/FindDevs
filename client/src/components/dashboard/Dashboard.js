@@ -82,7 +82,9 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
                 <td className="hide-sm">{edu.degree}</td>
                 <td className="hide-sm">
                   {new Date(`${edu.from}`).toLocaleDateString("gb-en")} -{" "}
-                  {edu.current ? "Current" : edu.to}
+                  {edu.current
+                    ? "Current"
+                    : new Date(`${edu.to}`).toLocaleDateString("gb-en")}
                 </td>
                 <td>
                   <button className="btn btn-danger">Delete</button>
