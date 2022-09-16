@@ -42,8 +42,8 @@ const AddEducation = (props) => {
       <Alert />
       <h1 className="large text-primary">Add Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch"></i> Add any developer/programming
-        positions that you have had in the past
+        <i className="fas fa-code-branch"></i> Add any school or bootcamp that
+        you have attended
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => submitForm(e)}>
@@ -121,9 +121,9 @@ const AddEducation = (props) => {
           ></textarea>
         </div>
         <input type="submit" className="btn btn-primary my-1" />
-        <a className="btn btn-light my-1" href="dashboard.html">
+        <Link to="/dashboard" className="btn btn-light my-1">
           Go Back
-        </a>
+        </Link>
       </form>
     </section>
   );
