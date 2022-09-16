@@ -6,6 +6,8 @@ import Spinner from "../layout/Spinner";
 import { Link } from "react-router-dom";
 import DashboardActions from "./DashboardActions";
 import Alert from "../layout/Alert";
+import Experience from "./Experience";
+import Education from "./Education";
 
 function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
   useEffect(() => {
@@ -21,7 +23,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
         <i className="fas fa-user"></i> Welcome {auth.user && auth.user.name}
       </p>
 
-      {profile != null && loading == false ? (
+      {profile != null && loading === false ? (
         <></>
       ) : (
         <>
@@ -44,23 +46,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          {profile &&
-            profile.experience &&
-            profile.experience.map((exp) => (
-              <tr>
-                <td>{exp.company}</td>
-                <td className="hide-sm">{exp.title}</td>
-                <td className="hide-sm">
-                  {new Date(`${exp.from}`).toLocaleDateString("gb-en")} -{" "}
-                  {exp.current ? "Current" : exp.to}
-                </td>
-                <td>
-                  <button className="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
+        <Experience />
       </table>
 
       <h2 className="my-2">Education Credentials</h2>
@@ -73,25 +59,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
             <th />
           </tr>
         </thead>
-        <tbody>
-          {profile &&
-            profile.education &&
-            profile.education.map((edu) => (
-              <tr key={edu._id}>
-                <td>{edu.school}</td>
-                <td className="hide-sm">{edu.degree}</td>
-                <td className="hide-sm">
-                  {new Date(`${edu.from}`).toLocaleDateString("gb-en")} -{" "}
-                  {edu.current
-                    ? "Current"
-                    : new Date(`${edu.to}`).toLocaleDateString("gb-en")}
-                </td>
-                <td>
-                  <button className="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
+        <Education />
       </table>
 
       <div className="my-2">
