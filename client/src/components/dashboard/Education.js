@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { format, formatDistance, subDays } from "date-fns";
+import { deleteEducation } from "../../actions/profile";
 
-const Education = ({ profile: { profile } }) => {
+const Education = ({ profile: { profile }, deleteEducation }) => {
   return (
     <tbody>
       {profile?.education.map((edu) => (
@@ -15,7 +16,12 @@ const Education = ({ profile: { profile } }) => {
             {edu.current ? "Current" : format(new Date(edu.to), "MM/dd/yyyy")}
           </td>
           <td>
-            <button className="btn btn-danger">Delete</button>
+            <button
+              onClick={() => deleteEducation(edu._id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       ))}
@@ -31,4 +37,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, {})(Education);
+export default connect(mapStateToProps, { deleteEducation })(Education);

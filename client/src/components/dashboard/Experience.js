@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { format } from "date-fns";
+import { deleteExperience } from "../../actions/profile";
 
-const Experience = ({ profile: { profile } }) => {
+const Experience = ({ profile: { profile }, deleteExperience }) => {
   return (
     <tbody>
       {profile?.experience.map((exp) => (
@@ -15,7 +16,12 @@ const Experience = ({ profile: { profile } }) => {
             {exp.current ? "Current" : format(new Date(exp.to), "MM/dd/yyyy")}
           </td>
           <td>
-            <button className="btn btn-danger">Delete</button>
+            <button
+              onClick={() => deleteExperience(exp._id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       ))}
@@ -31,4 +37,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, {})(Experience);
+export default connect(mapStateToProps, { deleteExperience })(Experience);
