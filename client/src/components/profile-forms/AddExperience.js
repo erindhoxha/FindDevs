@@ -78,7 +78,12 @@ const AddExperience = (props) => {
         </div>
         <div className="form-group">
           <h4>From Date</h4>
-          <input onChange={(e) => setFormField(e)} type="date" name="from" />
+          <input
+            onChange={(e) => setFormField(e)}
+            type="date"
+            name="from"
+            value={from}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="current">

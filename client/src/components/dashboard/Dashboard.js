@@ -64,7 +64,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
       </table>
 
       <h2 className="my-2">Education Credentials</h2>
-      <table className="table">
+      <table className="table w-full">
         <thead>
           <tr>
             <th>School</th>
@@ -74,14 +74,21 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Northern Essex</td>
-            <td className="hide-sm">Associates</td>
-            <td className="hide-sm">02-03-2007 - 01-02-2009</td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
+          {profile &&
+            profile.education &&
+            profile.education.map((edu) => (
+              <tr key={edu._id}>
+                <td>{edu.school}</td>
+                <td className="hide-sm">{edu.degree}</td>
+                <td className="hide-sm">
+                  {new Date(`${edu.from}`).toLocaleDateString("gb-en")} -{" "}
+                  {edu.current ? "Current" : edu.to}
+                </td>
+                <td>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 
