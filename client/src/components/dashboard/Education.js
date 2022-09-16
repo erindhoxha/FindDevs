@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { format, formatDistance, subDays } from "date-fns";
 
 const Education = ({ profile: { profile } }) => {
   return (
@@ -10,8 +11,8 @@ const Education = ({ profile: { profile } }) => {
           <td>{edu.school}</td>
           <td className="hide-sm">{edu.degree}</td>
           <td className="hide-sm">
-            {new Date(`${edu.from}`).toLocaleDateString("gb-en")} -{" "}
-            {edu.current ? "Current" : edu.to}
+            {format(new Date(edu.from), "MM/dd/yyyy")} -{" "}
+            {edu.current ? "Current" : format(new Date(edu.to), "MM/dd/yyyy")}
           </td>
           <td>
             <button className="btn btn-danger">Delete</button>
