@@ -6,6 +6,8 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   DELETE_ACCOUNT,
+  GET_PROFILES,
+  GET_REPOS,
 } from './types';
 import { setAlert } from '../actions/alert';
 
@@ -18,6 +20,64 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
     dispatch({
       type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+export const getProfiles = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_PROFILE,
+  });
+
+  try {
+    const res = await axios.get('/api/profile/all');
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+// Get github repos
+export const getGithubRepos = (username) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/github/${username}`);
+    dispatch({
+      type: GET_REPOS,
       payload: res.data,
     });
   } catch (error) {
@@ -216,7 +276,7 @@ export const deleteAccount = () => async (dispatch) => {
   console.log('This is running!');
   if (window.confirm('Are you sure? This can not be undone!')) {
     try {
-      await axios.delete(`/api/profile`);
+      const res = await axios.delete(`/api/profile`);
       dispatch({
         type: CLEAR_PROFILE,
       });
@@ -225,6 +285,7 @@ export const deleteAccount = () => async (dispatch) => {
       });
       dispatch(setAlert('Your account has been permanently deleted'));
     } catch (error) {
+      console.log('ERROR!', error);
       const errors = error.response.data.errors;
       if (errors) {
         errors.forEach((error) => {

@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const { body, validationResult } = require('express-validator');
 const { json } = require('express/lib/response');
 
@@ -14,10 +15,9 @@ const config = require('config');
 // @access      Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
-      ['name', 'avatar']
-    );
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    }).populate('user', ['name', 'avatar']);
     if (!profile) {
       return res
         .status(400)
@@ -160,9 +160,12 @@ router.get('/:uid', async (req, res) => {
 // @access      Private and Public
 router.delete('/', auth, async (req, res) => {
   try {
-    // @todo - remove users posts
-    // remove profile
     const user = await User.findOne({ _id: req.user.id });
+
+    // remove user posts
+    Post.deleteMany({ user: req.user.id });
+
+    // remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
 
     // remove user

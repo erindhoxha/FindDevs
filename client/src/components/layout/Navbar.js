@@ -1,24 +1,27 @@
-import React, { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { logout } from "../../actions/auth";
+import React, { useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <NavLink to="/profiles">Developers</NavLink>
+      </li>
+      <li>
         <NavLink
           to="/dashboard"
-          className={(isActive) => "active" + (!isActive ? " unselected" : "")}
+          className={(isActive) => 'active' + (!isActive ? ' unselected' : '')}
         >
-          <i className="fas fa-user"></i>{" "}
+          <i className="fas fa-user"></i>{' '}
           <span className="hide-sm">Dashboard</span>
         </NavLink>
       </li>
       <li>
         <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt"></i>{" "}
+          <i className="fas fa-sign-out-alt"></i>{' '}
           <span className="hide-sm">Logout</span>
         </a>
       </li>
@@ -27,7 +30,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <NavLink to="/developers">Developers</NavLink>
+        <NavLink to="/profiles">Developers</NavLink>
       </li>
       <li>
         <NavLink to="/register">Register</NavLink>
