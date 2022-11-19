@@ -5,7 +5,7 @@ import { getProfileById } from '../../actions/profile';
 import { connect } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 
-const Profile = ({ getProfileById, profile: { profile, loading } }) => {
+const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   const params = useParams();
 
   useEffect(() => {
@@ -20,6 +20,13 @@ const Profile = ({ getProfileById, profile: { profile, loading } }) => {
           <NavLink className="btn btn-light" to="/profiles">
             Back to profiles
           </NavLink>
+          {auth.isAuthenticated &&
+            auth.loading === false &&
+            auth.user._id === profile._id && (
+              <NavLink className="btn btn-primary" to={`/edit-profile`}>
+                Edit profile
+              </NavLink>
+            )}
         </Fragment>
       )}
     </Fragment>
