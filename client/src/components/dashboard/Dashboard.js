@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { getCurrentProfile } from "../../actions/profile";
-import { connect } from "react-redux";
-import Spinner from "../layout/Spinner";
-import { Link } from "react-router-dom";
-import DashboardActions from "./DashboardActions";
-import Alert from "../layout/Alert";
-import Experience from "./Experience";
-import Education from "./Education";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { deleteAccount, getCurrentProfile } from '../../actions/profile';
+import { connect } from 'react-redux';
+import Spinner from '../layout/Spinner';
+import { Link } from 'react-router-dom';
+import DashboardActions from './DashboardActions';
+import Alert from '../layout/Alert';
+import Experience from './Experience';
+import Education from './Education';
 
-function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
+function Dashboard({
+  getCurrentProfile,
+  auth,
+  profile: { profile, loading },
+  deleteAccount,
+}) {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
@@ -27,7 +32,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
         <></>
       ) : (
         <>
-          You have not set up a profile. Please add some info.{" "}
+          You have not set up a profile. Please add some info.{' '}
           <Link to="/create-profile" className="btn btn-primary my-1">
             Create profile
           </Link>
@@ -63,7 +68,7 @@ function Dashboard({ getCurrentProfile, auth, profile: { profile, loading } }) {
       </table>
 
       <div className="my-2">
-        <button className="btn btn-danger">
+        <button className="btn btn-danger" onClick={() => deleteAccount()}>
           <i className="fas fa-user-minus"></i>
           Delete My Account
         </button>
@@ -83,4 +88,6 @@ const mapStateToProps = (state, prevState) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

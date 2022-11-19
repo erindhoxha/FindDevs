@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, useNavigate, withRouter } from "react-router-dom";
-import { createProfile } from "../../actions/profile";
-import Alert from "../layout/Alert";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, useNavigate, withRouter } from 'react-router-dom';
+import { createProfile } from '../../actions/profile';
+import Alert from '../layout/Alert';
 
 const CreateProfile = ({ createProfile }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    company: "",
-    website: "",
-    location: "",
-    status: "",
-    skills: "",
-    githubusername: "",
-    bio: "",
-    twitter: "",
-    facebook: "",
-    linkedin: "",
-    youtube: "",
-    instagram: "",
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    githubusername: '',
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    youtube: '',
+    instagram: '',
   });
 
   const [displaySocialInputs, toggleDisplaySocialInputs] = useState(false);
@@ -159,7 +159,7 @@ const CreateProfile = ({ createProfile }) => {
             type="button"
             className="btn btn-light"
           >
-            {displaySocialInputs ? "Remove" : "Add"} Social Network Links
+            {displaySocialInputs ? 'Remove' : 'Add'} Social Network Links
           </button>
           <span>Optional</span>
         </div>
