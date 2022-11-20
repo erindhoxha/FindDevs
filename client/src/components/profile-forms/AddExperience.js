@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { addExperience } from "../../actions/profile";
-import Alert from "../layout/Alert";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addExperience } from '../../actions/profile';
+import Alert from '../layout/Alert';
 
 const AddExperience = (props) => {
   let navigate = useNavigate();
 
   const [formFields, setFormFields] = useState({
-    title: "",
-    company: "",
-    location: "",
-    from: "",
-    to: "",
+    title: '',
+    company: '',
+    location: '',
+    from: '',
+    to: '',
     current: true,
-    description: "",
+    description: '',
   });
 
   const { title, company, location, from, to, current, description } =
@@ -32,11 +32,6 @@ const AddExperience = (props) => {
     e.preventDefault();
     props.addExperience(formFields, navigate);
   };
-
-  useEffect(() => {
-    console.log(formFields);
-  }, [formFields]);
-
   return (
     <section>
       <Alert />
@@ -96,14 +91,14 @@ const AddExperience = (props) => {
                 setFormFields({ ...formFields, current: !current });
               }}
               checked={current}
-            />{" "}
+            />{' '}
             Current Job
           </label>
         </div>
         <div className="form-group">
           <h4>To Date</h4>
           <input
-            disabled={current ? "disabled" : ""}
+            disabled={current ? 'disabled' : ''}
             value={to}
             onChange={(e) => setFormField(e)}
             type="date"

@@ -40,10 +40,6 @@ const CreateProfile = ({ createProfile }) => {
     instagram,
   } = formData;
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const submitForm = (e) => {
     e.preventDefault();
     createProfile(formData, navigate);
