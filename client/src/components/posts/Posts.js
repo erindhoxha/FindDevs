@@ -5,6 +5,7 @@ import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
 import { NavLink } from 'react-router-dom';
+import Alert from '../layout/Alert';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
+      <Alert />
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Welcome to the community

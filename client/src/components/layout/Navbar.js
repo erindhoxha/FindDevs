@@ -14,10 +14,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <NavLink to="/posts">Posts</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/dashboard"
-          className={(isActive) => 'active' + (!isActive ? ' unselected' : '')}
-        >
+        <NavLink to="/dashboard">
           <i className="fas fa-user"></i>{' '}
           <span className="hide-sm">Dashboard</span>
         </NavLink>
