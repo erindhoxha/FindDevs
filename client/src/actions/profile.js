@@ -30,6 +30,9 @@ export const getCurrentProfile = () => async (dispatch) => {
         status: error.response.status,
       },
     });
+    dispatch({
+      type: CLEAR_PROFILE,
+    });
   }
 };
 
@@ -80,15 +83,7 @@ export const getGithubRepos = (username) => async (dispatch) => {
       type: GET_REPOS,
       payload: res.data,
     });
-  } catch (error) {
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
-  }
+  } catch (error) {}
 };
 
 export const createProfile =
