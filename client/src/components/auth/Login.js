@@ -1,23 +1,22 @@
-import React, { Fragment, useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../actions/auth";
-import { connect } from "react-redux";
-import Alert from "../layout/Alert";
-import PropTypes from "prop-types";
+import React, { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import Alert from '../layout/Alert';
+import PropTypes from 'prop-types';
 
 const Login = ({ login, isAuthenticated }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   useEffect(() => {
-    console.log(isAuthenticated);
     if (isAuthenticated) {
-      return navigate("/dashboard", { replace: true });
+      return navigate('/dashboard', { replace: true });
     }
   }, [isAuthenticated, navigate]);
 

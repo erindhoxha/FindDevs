@@ -30,7 +30,6 @@ router.post('/', [auth, [body('text').not().isEmpty()]], async (req, res) => {
     await post.save();
     res.json(post);
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server error');
   }
 });
@@ -46,7 +45,6 @@ router.get('/', async (req, res) => {
         res.send(posts);
       });
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server error');
   }
 });
@@ -62,7 +60,6 @@ router.get('/:id', auth, async (req, res) => {
     }
     res.json(post);
   } catch (err) {
-    console.log(err.message);
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Post not found' });
     }

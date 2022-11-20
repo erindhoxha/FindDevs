@@ -118,7 +118,6 @@ export const createProfile =
       }
 
       if (error.response.data.msg) {
-        console.log('There is one');
         dispatch(setAlert(error.response.data.msg, 'danger'));
       }
       dispatch({
@@ -268,7 +267,6 @@ export const deleteEducation = (id) => async (dispatch) => {
 // delete account and profile
 
 export const deleteAccount = () => async (dispatch) => {
-  console.log('This is running!');
   if (window.confirm('Are you sure? This can not be undone!')) {
     try {
       const res = await axios.delete(`/api/profile`);
@@ -280,7 +278,6 @@ export const deleteAccount = () => async (dispatch) => {
       });
       dispatch(setAlert('Your account has been permanently deleted'));
     } catch (error) {
-      console.log('ERROR!', error);
       const errors = error.response.data.errors;
       if (errors) {
         errors.forEach((error) => {

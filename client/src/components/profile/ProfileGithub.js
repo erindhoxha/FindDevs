@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 const ProfileGithub = ({ profile, getGithubRepos, repos }) => {
   useEffect(() => {
     getGithubRepos(profile.githubusername);
-    console.log(repos);
   }, []);
 
   return (

@@ -6,16 +6,14 @@ const config = require('config');
 const mongoURI = config.get('mongoURI');
 
 const connectDB = async () => {
-    try {
-        // added useNewUrlParser just in case, older versions to support
-        await mongoose.connect(mongoURI, {
-            useNewUrlParser: true,
-        })
-        console.log("MongoDB connected...");
-    } catch (err) {
-        console.log(err.message);
-        // process.exit(1);
-    }
-}
+  try {
+    // added useNewUrlParser just in case, older versions to support
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+    });
+  } catch (err) {
+    process.exit(1);
+  }
+};
 
 module.exports = connectDB;

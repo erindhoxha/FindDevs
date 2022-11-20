@@ -26,7 +26,6 @@ router.get('/me', auth, async (req, res) => {
     }
     res.json(profile);
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server error');
   }
 });
@@ -39,7 +38,6 @@ router.post(
   [auth, [body('status').not().isEmpty(), body('skills').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -83,7 +81,6 @@ router.post(
 
       if (profile) {
         // update
-        console.log('This is updating.');
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
@@ -98,7 +95,6 @@ router.post(
       await profile.save();
       res.json(profile);
     } catch (err) {
-      console.log(err.message);
       res.status(500).send('Server error');
     }
   }
@@ -171,7 +167,6 @@ router.delete('/', auth, async (req, res) => {
       msg: `User with the name: ${user.name} and email ${user.email} removed.`,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server Error');
   }
 
@@ -186,7 +181,6 @@ router.delete('/', auth, async (req, res) => {
   //     res.send(profile);
   // }
   // catch (err) {
-  //     console.log(err);
   //     if (err.kind == 'ObjectId') {
   //         return res.status(400).json({msg: 'There is no profile for this user'})
   //     }
@@ -246,11 +240,9 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     profile.experience = profile.experience.filter((x) => {
       return x._id.toString() != req.params.exp_id;
     });
-    console.log(profile);
     profile.save();
     res.json(profile);
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server Error');
   }
 });
@@ -313,11 +305,9 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     profile.education = profile.education.filter((x) => {
       return x._id.toString() != req.params.edu_id;
     });
-    console.log(profile);
     profile.save();
     res.json(profile);
   } catch (err) {
-    console.log(err.message);
     res.status(500).send('Server Error');
   }
 });
@@ -326,7 +316,6 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @desc        Get current users github repositories
 // @access      Public
 router.get('/github/:username', async (req, res) => {
-  console.log('Finding github username');
   try {
     const options = {
       uri: `https://api.github.com/users/${
