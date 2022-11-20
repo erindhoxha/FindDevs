@@ -1,13 +1,20 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addLike, deletePost, removeLike } from '../../actions/post';
 
-const PostItem = ({ auth, post, addLike, removeLike, deletePost }) => {
-  console.log(auth);
-  console.log(post);
+const PostItem = ({
+  auth,
+  post,
+  addLike,
+  removeLike,
+  deletePost,
+  showActions,
+}) => {
+  let navigate = useNavigate();
+
   return (
     <Fragment>
       <div className="post bg-white p-1 my-1">
@@ -22,30 +29,37 @@ const PostItem = ({ auth, post, addLike, removeLike, deletePost }) => {
           <p className="post-date">
             Posted on <Moment format="YYYY/MM/DD">{post.date}</Moment>
           </p>
-          <button
-            onClick={() => addLike(post?._id)}
-            type="button"
-            className="btn btn-light"
-          >
-            <i className="fas fa-thumbs-up"></i>
-            <span> {post.likes.length > 0 && post.likes.length}</span>
-          </button>
-          <button
-            onClick={() => removeLike(post?._id)}
-            type="button"
-            className="btn btn-light"
-          >
-            <i className="fas fa-thumbs-down"></i>
-          </button>
-          {post.comments.length > 0 && (
-            <NavLink to={`/post/${post._id}`} className="btn btn-primary">
-              Discussion{' '}
-              <span className="comment-count">{post.comments.length}</span>
-            </NavLink>
+          {showActions && (
+            <Fragment>
+              <button
+                onClick={() => addLike(post?._id)}
+                type="button"
+                className="btn btn-light"
+              >
+                <i className="fas fa-thumbs-up"></i>
+                <span> {post.likes.length > 0 && post.likes.length}</span>
+              </button>
+              <button
+                onClick={() => removeLike(post?._id)}
+                type="button"
+                className="btn btn-light"
+              >
+                <i className="fas fa-thumbs-down"></i>
+              </button>
+              <NavLink to={`/posts/${post._id}`} className="btn btn-primary">
+                Discussion{' '}
+                {post.comments.length > 0 && (
+                  <span className="comment-count">{post.comments.length}</span>
+                )}
+              </NavLink>
+            </Fragment>
           )}
           {!auth.loading && auth?.user?._id === post.user && (
             <button
-              onClick={() => deletePost(post?._id)}
+              onClick={() => {
+                deletePost(post?._id);
+                navigate('/posts/', { replace: true });
+              }}
               type="button"
               className="btn btn-danger"
             >
@@ -56,6 +70,10 @@ const PostItem = ({ auth, post, addLike, removeLike, deletePost }) => {
       </div>
     </Fragment>
   );
+};
+
+PostItem.defaultProps = {
+  showActions: true,
 };
 
 PostItem.propTypes = {
