@@ -38,7 +38,7 @@ const Login = ({ login, isAuthenticated }) => {
   // Redirect if logged in
 
   return (
-    <Fragment>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Sign in</h1>
       <p className="lead">
@@ -69,7 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Register</Link>
       </p>
-    </Fragment>
+    </section>
   );
 };
 

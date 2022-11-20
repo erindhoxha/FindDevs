@@ -53,7 +53,7 @@ const CreateProfile = ({ createProfile }) => {
   };
 
   return (
-    <>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
@@ -224,7 +224,7 @@ const CreateProfile = ({ createProfile }) => {
           Go Back
         </Link>
       </form>
-    </>
+    </section>
   );
 };
 

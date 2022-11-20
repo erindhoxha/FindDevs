@@ -78,7 +78,7 @@ const EditProfile = ({
   };
 
   return (
-    <>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
@@ -249,7 +249,7 @@ const EditProfile = ({
           Go Back
         </Link>
       </form>
-    </>
+    </section>
   );
 };
 

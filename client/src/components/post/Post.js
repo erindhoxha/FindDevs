@@ -28,7 +28,7 @@ const Post = ({ getPost, deleteComment, post: { post, loading } }) => {
   return loading || post === null ? (
     <Spinner />
   ) : (
-    <Fragment>
+    <section className="container">
       <Alert />
       <NavLink to="/posts" className="btn">
         Back to posts
@@ -46,7 +46,7 @@ const Post = ({ getPost, deleteComment, post: { post, loading } }) => {
             ))
           : ''}
       </div>
-    </Fragment>
+    </section>
   );
 };
 

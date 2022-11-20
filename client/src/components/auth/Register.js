@@ -1,18 +1,18 @@
-import React, { Fragment, useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { setAlert } from "../../actions/alert";
-import { register } from "../../actions/auth";
-import PropTypes from "prop-types";
-import Alert from "../layout/Alert";
+import React, { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
+import Alert from '../layout/Alert';
 
 const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password2: "",
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
   });
 
   let navigate = useNavigate();
@@ -26,7 +26,7 @@ const Register = ({ setAlert, register }) => {
     e.preventDefault();
     if (password !== password2) {
       // Dont submit
-      setAlert("Passwords don't match", "danger");
+      setAlert("Passwords don't match", 'danger');
     } else {
       register(
         {
@@ -40,7 +40,7 @@ const Register = ({ setAlert, register }) => {
   };
 
   return (
-    <Fragment>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
@@ -95,7 +95,7 @@ const Register = ({ setAlert, register }) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </Fragment>
+    </section>
   );
 };
 

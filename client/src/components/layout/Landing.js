@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Landing = ({ isAuthenticated }) => {
@@ -8,9 +8,9 @@ const Landing = ({ isAuthenticated }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-        return navigate("/dashboard", { replace: true })
+      return navigate('/dashboard', { replace: true });
     }
-}, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
 
   return (
     <section className="landing">
@@ -22,23 +22,25 @@ const Landing = ({ isAuthenticated }) => {
             other developers
           </p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-primary">Sign Up</Link>
-            <Link to="/login" className="btn btn-light">Login</Link>
+            <Link to="/register" className="btn btn-primary">
+              Sign Up
+            </Link>
+            <Link to="/login" className="btn btn-light">
+              Login
+            </Link>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 Landing.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state, prevState) => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-
-
-export default connect(mapStateToProps, {})(Landing)
+export default connect(mapStateToProps, {})(Landing);

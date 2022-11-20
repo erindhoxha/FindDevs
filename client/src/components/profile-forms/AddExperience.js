@@ -33,7 +33,7 @@ const AddExperience = (props) => {
     props.addExperience(formFields, navigate);
   };
   return (
-    <section>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Add An Experience</h1>
       <p className="lead">

@@ -20,7 +20,7 @@ function Dashboard({
   }, [getCurrentProfile]);
 
   return (
-    <div>
+    <section className="container">
       {loading && profile === null ? <Spinner /> : <></>}
       <Alert />
       <h1 className="large text-primary">Dashboard</h1>
@@ -73,7 +73,7 @@ function Dashboard({
           Delete My Account
         </button>
       </div>
-    </div>
+    </section>
   );
 }
 

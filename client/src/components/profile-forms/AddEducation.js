@@ -34,7 +34,7 @@ const AddEducation = (props) => {
   };
 
   return (
-    <section>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Add Education</h1>
       <p className="lead">
