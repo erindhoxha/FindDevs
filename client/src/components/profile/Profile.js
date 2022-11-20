@@ -20,13 +20,13 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
           <NavLink className="btn btn-light" to="/profiles">
             Back to profiles
           </NavLink>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile._id && (
-              <NavLink className="btn btn-primary" to={`/edit-profile`}>
-                Edit profile
-              </NavLink>
-            )}
+          {auth?.user?._id === profile.user._id ? (
+            <NavLink className="btn btn-primary" to={`/edit-profile`}>
+              Edit profile
+            </NavLink>
+          ) : (
+            ''
+          )}
         </Fragment>
       )}
     </Fragment>
