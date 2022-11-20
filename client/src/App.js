@@ -17,6 +17,7 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
 
 const App = () => {
   useEffect(() => {
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/create-profile" element={<CreateProfile />} />
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/add-experience" element={<AddExperience />} />
+              <Route path="/posts" element={<Posts />} />
               <Route path="/add-education" element={<AddEducation />} />
               <Route path="/profiles" exact element={<Profiles />} />
               <Route path="/profile/:id" element={<Profile />} />
