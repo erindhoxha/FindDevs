@@ -20,3 +20,4 @@ export const CLEAR_USER = 'CLEAR_USER';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const DELETE_POST = 'DELETE_POST';
+export const ADD_POST = 'ADD_POST';
