@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const ProfileItem = ({
   profile: {
-    _id,
-    user: { name, avatar },
+    user: { _id, name, avatar },
     status,
     company,
     location,

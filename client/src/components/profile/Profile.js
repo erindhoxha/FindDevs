@@ -11,11 +11,11 @@ import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
-  const params = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    getProfileById(params.id);
-  }, [getProfileById, params]);
+    getProfileById(id);
+  }, [getProfileById, id]);
   return (
     <Fragment>
       {profile === null || loading ? (

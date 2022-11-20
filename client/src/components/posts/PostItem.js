@@ -12,10 +12,10 @@ const PostItem = ({ auth, post, addLike, removeLike, deletePost }) => {
     <Fragment>
       <div className="post bg-white p-1 my-1">
         <div>
-          <a href="profile.html">
+          <NavLink to={`/profile/${post.user}`}>
             <img className="round-img" src={post.avatar} alt="" />
             <h4>{post.name}</h4>
-          </a>
+          </NavLink>
         </div>
         <div>
           <p className="my-1">{post.text}</p>
