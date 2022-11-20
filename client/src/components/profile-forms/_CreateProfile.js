@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, useNavigate, withRouter } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createProfile } from '../../actions/profile';
 import Alert from '../layout/Alert';
 
