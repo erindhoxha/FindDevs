@@ -1,6 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://admin:yMsukTLrLDMSe98T@devconnector.qm14x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://admin:HXQeJsYzftVytFsB@devconnector.qm14x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken",
-  "githubClientID": "7ec717745663b4a352a7",
-  "githubSecret": "60156ff35c4b8d23947a5e2a763e17329fff13fc"
+  "githubClientID": "727cfdbae851db385c83",
+  "githubSecret": "80dd2c881450a4c8290d8e161dbef5a6c4d17aec"
 }
