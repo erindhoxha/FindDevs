@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { format, formatDistance, subDays } from "date-fns";
+import { format } from "date-fns";
 import { deleteEducation } from "../../actions/profile";
 
 const Education = ({ profile: { profile }, deleteEducation }) => {
