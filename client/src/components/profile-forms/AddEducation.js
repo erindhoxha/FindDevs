@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { addEducation } from "../../actions/profile";
-import Alert from "../layout/Alert";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addEducation } from '../../actions/profile';
+import Alert from '../layout/Alert';
 
 const AddEducation = (props) => {
   let navigate = useNavigate();
 
   const [formFields, setFormFields] = useState({
-    school: "",
-    degree: "",
-    fieldofstudy: "",
-    from: "",
-    to: "",
+    school: '',
+    degree: '',
+    fieldofstudy: '',
+    from: '',
+    to: '',
     current: true,
-    description: "",
+    description: '',
   });
 
   const { school, degree, fieldofstudy, from, to, current, description } =
@@ -33,12 +33,8 @@ const AddEducation = (props) => {
     props.addEducation(formFields, navigate);
   };
 
-  useEffect(() => {
-    console.log(formFields);
-  }, [formFields]);
-
   return (
-    <section>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Add Education</h1>
       <p className="lead">
@@ -96,14 +92,14 @@ const AddEducation = (props) => {
                 setFormFields({ ...formFields, current: !current });
               }}
               checked={current}
-            />{" "}
+            />{' '}
             Current Job
           </label>
         </div>
         <div className="form-group">
           <h4>To Date</h4>
           <input
-            disabled={current ? "disabled" : ""}
+            disabled={current ? 'disabled' : ''}
             value={to}
             onChange={(e) => setFormField(e)}
             type="date"

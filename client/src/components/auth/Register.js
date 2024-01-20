@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
@@ -39,7 +39,7 @@ const Register = ({ setAlert, register }) => {
   };
 
   return (
-    <Fragment>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
@@ -94,7 +94,7 @@ const Register = ({ setAlert, register }) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </Fragment>
+    </section>
   );
 };
 

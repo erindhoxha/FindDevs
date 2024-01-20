@@ -8,10 +8,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <NavLink
-          to="/dashboard"
-          className={(isActive) => "active" + (!isActive ? " unselected" : "")}
-        >
+        <NavLink to="/profiles">Developers</NavLink>
+      </li>
+      <li>
+        <NavLink to="/posts">Posts</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard">
           <i className="fas fa-user"></i>{" "}
           <span className="hide-sm">Dashboard</span>
         </NavLink>
@@ -27,7 +30,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <NavLink to="/developers">Developers</NavLink>
+        <NavLink to="/profiles">Developers</NavLink>
       </li>
       <li>
         <NavLink to="/register">Register</NavLink>

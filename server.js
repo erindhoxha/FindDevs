@@ -1,17 +1,14 @@
 const express = require("express");
 const connectDB = require("./config/db");
+const path = require("path");
 
 const app = express();
 
-// Connect database
+// Connect Database
 connectDB();
 
 // Init Middleware
-app.use(express.json({ extended: false }));
-
-app.get("/", (req, res) => {
-  res.send("API running");
-});
+app.use(express.json());
 
 // Define Routes
 app.use("/api/users", require("./routes/api/users"));
@@ -19,8 +16,16 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 
-// AFTER NPM RUN SERVER (NODEMON SERVER):
-// GO TO POSTMAN, RUN GET AT http://localhost:5001 AND YOU'LL SEE THE "API RUNNING"
-// maybe you forgot why? because app.get() it's creating a handler
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

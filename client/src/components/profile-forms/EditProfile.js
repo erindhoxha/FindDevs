@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, useNavigate, withRouter } from "react-router-dom";
-import { createProfile, getCurrentProfile } from "../../actions/profile";
-import Alert from "../layout/Alert";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, useNavigate, withRouter } from 'react-router-dom';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
+import Alert from '../layout/Alert';
 
 const EditProfile = ({
   profile: { profile, loading },
@@ -13,18 +13,18 @@ const EditProfile = ({
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    company: "",
-    website: "",
-    location: "",
-    status: "",
-    skills: "",
-    githubusername: "",
-    bio: "",
-    twitter: "",
-    facebook: "",
-    linkedin: "",
-    youtube: "",
-    instagram: "",
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    githubusername: '',
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    youtube: '',
+    instagram: '',
   });
 
   const [displaySocialInputs, toggleDisplaySocialInputs] = useState(false);
@@ -48,25 +48,24 @@ const EditProfile = ({
     getCurrentProfile();
 
     setFormData({
-      company: loading || !profile.company ? "" : profile?.company,
-      website: loading || !profile.website ? "" : profile?.website,
-      location: loading || !profile.location ? "" : profile?.location,
-      status: loading || !profile.status ? "" : profile?.status,
-      skills: loading || !profile.skills ? "" : profile?.skills.join(","),
+      company: loading || !profile.company ? '' : profile?.company,
+      website: loading || !profile.website ? '' : profile?.website,
+      location: loading || !profile.location ? '' : profile?.location,
+      status: loading || !profile.status ? '' : profile?.status,
+      skills: loading || !profile.skills ? '' : profile?.skills.join(','),
       githubusername:
-        loading || !profile.githubusername ? "" : profile?.githubusername,
-      bio: loading || !profile.bio ? "" : profile?.bio,
-      twitter: loading || !profile.twitter ? "" : profile?.twitter,
-      facebook: loading || !profile.facebook ? "" : profile?.facebook,
-      linkedin: loading || !profile.linkedin ? "" : profile?.linkedin,
-      youtube: loading || !profile.youtube ? "" : profile?.youtube,
-      instagram: loading || !profile.instagram ? "" : profile?.instagram,
+        loading || !profile.githubusername ? '' : profile?.githubusername,
+      bio: loading || !profile.bio ? '' : profile?.bio,
+      twitter: loading || !profile.twitter ? '' : profile?.twitter,
+      facebook: loading || !profile.facebook ? '' : profile?.facebook,
+      linkedin: loading || !profile.linkedin ? '' : profile?.linkedin,
+      youtube: loading || !profile.youtube ? '' : profile?.youtube,
+      instagram: loading || !profile.instagram ? '' : profile?.instagram,
     });
   }, [loading]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(formData);
     createProfile(formData, navigate, true);
     window.scrollTo(0, 0);
   };
@@ -79,7 +78,7 @@ const EditProfile = ({
   };
 
   return (
-    <>
+    <section className="container">
       <Alert />
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
@@ -181,7 +180,7 @@ const EditProfile = ({
             type="button"
             className="btn btn-light"
           >
-            {displaySocialInputs ? "Remove" : "Add"} Social Network Links
+            {displaySocialInputs ? 'Remove' : 'Add'} Social Network Links
           </button>
           <span>Optional</span>
         </div>
@@ -250,7 +249,7 @@ const EditProfile = ({
           Go Back
         </Link>
       </form>
-    </>
+    </section>
   );
 };
 
